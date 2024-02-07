@@ -1,6 +1,7 @@
-package org.example.JobAgency;
+package org.example.example.JobAgency;
 
-import org.example.Company.Vacancy;
+import org.example.example.Company.Vacancy;
+import org.example.example.JobSeekers.Observer;
 
 /**
  * Активности агентства:
@@ -14,6 +15,6 @@ public interface Publisher {
     void registerObserver(Observer observer);
     void removeObserver(Observer observer);
 
-    void sendOffer(String companyName, Vacancy skill, int salary);
+    void sendOffer(Vacancy vacancy);
 
 }

@@ -1,4 +1,4 @@
-package org.example.Company;
+package org.example.example.Company;
 
 import java.util.Locale;
 
@@ -10,18 +10,18 @@ public class Vacancy {
 
     private String companyName;
     private Skill skill;
-    private int maxSalary;
+    private int salary;
 
-    public Vacancy(String companyName, Skill skill, int maxSalary) {
+    public Vacancy(String companyName, Skill skill, int salary) {
         this.companyName = companyName;
         this.skill = skill;
-        this.maxSalary = maxSalary;
+        this.salary = salary;
     }
 
     @Override
     public String toString() {
         return String.format(Locale.getDefault(),
-                "Компания: %s, вакансия: %s, зарплата %s ", companyName, skill, maxSalary);
+                "Компания: %s, %s, зарплата %s ", companyName, skill, salary);
     }
 
     public String getCompanyName() {
@@ -40,11 +40,12 @@ public class Vacancy {
         this.skill = skill;
     }
 
-    public double getMaxSalary() {
-        return maxSalary;
+    public int getSalary() {
+        return salary;
     }
 
-    public void setMaxSalary(int maxSalary) {
-        this.maxSalary = maxSalary;
+
+    public void setSalary(int maxSalary) {
+        this.salary = maxSalary;
     }
 }

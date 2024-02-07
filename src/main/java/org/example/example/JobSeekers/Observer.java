@@ -1,11 +1,12 @@
-package org.example.JobSeekers;
+package org.example.example.JobSeekers;
 
-import org.example.Company.Skill;
-import org.example.Company.Vacancy;
+import org.example.example.Company.Vacancy;
 
 public interface Observer {
 
+    boolean receiveOffer(Vacancy vacancy);
 
-    void receiveOffer(Vacancy vacancy);
+    boolean compareObserver(Employee employee);
+
 
 }

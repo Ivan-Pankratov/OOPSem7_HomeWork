@@ -1,27 +1,47 @@
-package org.example.JobSeekers;
+package org.example.example.JobSeekers;
 
+import org.example.example.Company.Skill;
+import org.example.example.Company.Vacancy;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Master extends Employee implements Observer {
 
+    private int minSalary;
+    private final ArrayList<Skill> skills;
 
-
-    public Master(String name){
-        this.name = name;
-        salary = 80000;
-        skills = List.of(new String[]{"programming", "management"});
+    public Master (String name) {
+        super(name);
+        this.minSalary = 80000;
+        this.skills = new ArrayList<>();
+        skills.add(new Skill("programming"));
+        skills.add(new Skill("management"));
     }
 
     @Override
-    public void receiveOffer(String nameCompany, String skill, int salary) {
-        if ((this.salary <= salary)&&(this.skills.contains(skill)) ){
-            System.out.printf("Специалист %s: Мне нужна эта работа! (компания: %s; вид работ: %s заработная плата: %d)\n",
-                    name, nameCompany, skill, salary);
-            this.salary = salary;
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public boolean receiveOffer(Vacancy vacancy){
+        if (this.minSalary <= vacancy.getSalary()){
+            Skill sk = vacancy.getSkill();
+            for (Skill elem: this.skills){
+                if (elem.compareSkill(sk)){
+                    System.out.printf("Мастер %s, %s: Мне нужна эта работа! \n",
+                            getName(), vacancy );
+                    this.minSalary = vacancy.getSalary();
+                    return true;
+                }
+                System.out.printf("Мастер %s, %s: Не моя специальность! \n",
+                        getName(), vacancy);
+            }
+        } else {
+            System.out.printf("Мастер %s, %s: Я найду работу получше! \n",
+                    getName(), vacancy);
         }
-        else {
-            System.out.printf("Специалист %s: Я найду работу получше! (компания: %s; заработная плата: %d)\n",
-                    name, nameCompany, salary);
-        }
+        return false;
     }
 }

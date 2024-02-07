@@ -1,5 +1,9 @@
-package org.example;
-import java.util.Random;
+package org.example.example;
+
+import org.example.example.Company.*;
+import org.example.example.JobAgency.*;
+import org.example.example.JobSeekers.*;
+
 
 /**
  *  TODO: Доработать приложение, которое разрабатывалось на семинаре,
@@ -13,6 +17,25 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        Publisher publisher = new JobAgency();
+        Company google = new Company("Google", publisher, 120000);
+        Company yandex = new Company("Yandex", publisher, 95000);
+        Company geekBrains = new Company("GeekBrains", publisher, 98000);
+
+        Student student1 = new Student("Студент #1");
+        Master master1 = new Master("Мастер #1");
+        Master master2 = new Master("Мастер #2");
+        Worker worker1 = new Worker("Worker#1");
+
+        publisher.registerObserver(student1);
+        publisher.registerObserver(master1);
+        publisher.registerObserver(master2);
+        publisher.registerObserver(worker1);
+
+        google.needEmployee();
+        yandex.needEmployee();
+        geekBrains.needEmployee();
+
     }
 }
